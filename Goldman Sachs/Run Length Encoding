@@ -1,0 +1,22 @@
+string encode(string s)
+{     
+   string ans="";
+   ans=ans+s[0];
+   int k=1;
+   for(int i=1;i<s.size();i++)
+   {
+       if(s[i]==s[i-1])
+       {
+           k++;
+       }
+       else
+       {
+           ans=ans+to_string(k);
+           k=1;
+           ans=ans+s[i];
+       }
+   }
+   
+     ans=ans+to_string(k);
+     return ans;
+}     
