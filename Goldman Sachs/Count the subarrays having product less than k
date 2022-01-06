@@ -1,0 +1,27 @@
+int countSubArrayProductLessThanK(const vector<int>& a, int n, long long k) 
+    {
+        long long p=1;
+        int c=0;
+        int start=0;
+        int end=0;
+        
+        for(start=0,end=0;end<n;end++)
+        {
+            p=p*a[end];
+            
+            while(p>=k && start<end)
+            {
+                p=p/a[start];
+                start++;
+            }
+            
+            if(p<k)
+            c=c+end-start+1;
+            
+            
+            
+        }
+        
+        return c;
+        
+    }
