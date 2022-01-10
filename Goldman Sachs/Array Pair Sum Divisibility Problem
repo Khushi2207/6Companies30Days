@@ -1,0 +1,26 @@
+bool canPair(vector<int> nums, int k) 
+    {
+        map<int,int>mp;
+        
+        for(int i=0;i<nums.size();i++)
+        {
+            mp[nums[i]%k]=mp[nums[i]%k]+1;
+        }
+        
+        if(mp[0] %2 != 0) 
+            return false;
+        
+        for(auto x:mp)
+        {
+            
+            int j=x.first;
+            int l=x.second;
+            
+            if(j!=0 && mp[k-j]!=l)
+            return false;
+            
+            
+        }
+        return true;
+        // Code here.
+    }
