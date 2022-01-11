@@ -1,0 +1,41 @@
+int fun(int k, int n, int arr[],int b,int c, vector<vector<vector<int>>>&dp)
+    {
+        if(c>=n)
+        return 0;
+        
+        if(!k)
+        return 0;
+        
+        if(dp[c][k][b]!=-1)
+        return dp[c][k][b];
+        
+        if(b) // may sell
+        {
+            return dp[c][k][b]=max(fun(k-1,n,arr,0,c+1,dp)+arr[c],fun(k,n,arr,b,c+1,dp));
+        }
+        
+        return dp[c][k][b]=max(fun(k,n,arr,1,c+1,dp)-arr[c],fun(k,n,arr,b,c+1,dp));
+        
+        
+    }
+  
+    int maxProfit(int k, int n, int arr[]) 
+    {
+        int b=0;
+        
+        vector<vector<vector<int>>>dp(n+1,vector<vector<int>>(k+1, vector<int>(b+2)));
+        for(int i=0;i<=n;i++)
+        {
+            for(int j=0;j<=k;j++)
+            {
+                for(int x=0;x<2;x++)
+                {
+                    dp[i][j][x]=-1;
+                }
+            }
+        }
+        int c=0;
+        return fun(k,n,arr,0,0,dp);
+        
+        
+    }
