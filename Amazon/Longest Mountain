@@ -1,0 +1,27 @@
+int longestMountain(vector<int>& A) {
+        int max_len=INT_MIN;
+    int n=A.size();
+    for(int i=1;i<n-1;i++)
+    {
+        if(A[i-1]<A[i] && A[i]>A[i+1])
+        {
+            int l=i-1;
+            int r=i+1;
+            while(l>0 && A[l-1]<A[l])
+            {
+                l--;
+            }
+            while(r<n-1 && A[r+1]<A[r])
+            {
+                r++;
+            }
+            max_len=max(max_len,r-l+1);
+        }
+    }
+    if(max_len==INT_MIN)
+        return 0;
+    else
+        return max_len;
+        
+    }
+};
