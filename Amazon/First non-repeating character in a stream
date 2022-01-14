@@ -1,0 +1,27 @@
+string FirstNonRepeating(string a)
+		{
+		    deque<char>dq;
+		    string ans="";
+		    int n=a.size();
+		    int arr[26]={0};
+		    for(int i=0;i<n;i++)
+		    {
+		        if(arr[a[i]-'a']==0)
+		        dq.push_back(a[i]);
+		        
+		        arr[a[i]-'a']++;
+		        
+		        while(!dq.empty() && arr[dq.front()-'a']!=1)
+		        {
+		            dq.pop_front();
+		        }
+		        
+		        if(!dq.empty())
+		        ans+=dq.front();
+		        else
+		        ans+='#';
+		    }
+		    
+		    
+		    return ans;
+		}
