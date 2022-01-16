@@ -1,0 +1,25 @@
+const int MOD=1e9+6;
+    
+    long long fun(int m,vector<long long>&dp)
+    {
+        if(m==0)
+        return 1;
+        
+        if(m==1)
+        return 1;
+        
+        
+        return dp[m]=(1+fun(m-2,dp))%MOD;
+    }
+    
+    long long countWays(int m)
+    {
+        vector<long long>dp(m+1);
+        
+        for(int i=0;i<=m;i++)
+        {
+            dp[i]=-1;
+        }
+        
+        return fun(m,dp);
+    }
