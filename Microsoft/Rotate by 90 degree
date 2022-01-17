@@ -1,0 +1,36 @@
+void swap(int *a,int *b)
+{
+    int t=*a;
+    *a=*b;
+    *b=t;
+    
+}
+
+void transpose(int n,int A[][n])
+{
+    for (int i = 0; i < n; i++)
+        for (int j = i+1; j < n; j++)
+            swap(&A[i][j], &A[j][i]);
+}
+
+
+void rotate(int n,int a[][n])
+{
+    int m=0;
+    if(n%2==0)
+    {
+        m=n/2;
+    }
+    else
+    {
+        m=(n-1)/2;
+    }
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            swap(&a[i][j],&a[i][n-j-1]);
+        }
+    }
+    transpose(n,a);
+}
