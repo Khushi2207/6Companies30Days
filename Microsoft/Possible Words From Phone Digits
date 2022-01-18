@@ -1,0 +1,31 @@
+void fun(int i,int a[],vector<vector<char>>&key,int n,vector<string>&ans,string k)
+    {
+        if(i==n)
+        {
+            ans.push_back(k);
+            return;
+        }
+        
+        int m=key[a[i]-2].size();
+        
+        for(int j=0;j<m;j++)
+        {
+            
+            fun(i+1,a,key,n,ans,k+key[a[i]-2][j]);
+            
+        }
+        
+    }
+    
+    
+    
+    
+    vector<string> possibleWords(int a[], int n)
+    {
+        vector<vector<char>>key={{'a','b','c'},{'d','e','f'},{'g','h','i'},{'j','k','l'},{'m','n','o'},{'p','q','r','s'},{'t','u','v'},{'w','x','y','z'}};
+        vector<string>ans;
+        string k="";
+        fun(0,a,key,n,ans,k);
+        return ans;
+        
+    }
