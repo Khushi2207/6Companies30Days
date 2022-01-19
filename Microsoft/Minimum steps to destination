@@ -1,0 +1,17 @@
+int minSteps(int d)
+    {
+        int step=1;
+        int i=0;
+        while(true)
+        {
+            i=i+step;
+            if(i==d)
+            return step;
+            
+            if(i>d && (i-d)%2==0)
+            return step;
+            
+            step++;
+        }
+        
+    }
