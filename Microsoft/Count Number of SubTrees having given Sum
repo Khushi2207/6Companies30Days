@@ -1,0 +1,21 @@
+int c=0;
+
+int solve(Node* root, int X){
+    if(root == nullptr){
+	    return 0;
+	}
+	int left_val = solve(root->left,X);
+	int right_val = solve(root->right,X);
+	int sum = root->data + left_val + right_val;
+	if(sum == X){
+	    c++;
+	}
+	return sum;
+}
+int countSubtreesWithSumX(Node* root, int X)
+{
+	// Code here
+	c = 0;
+	int x = solve(root,X);
+	return c;
+}
