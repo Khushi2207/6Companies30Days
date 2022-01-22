@@ -1,0 +1,46 @@
+int fun(int n,int arr[],vector<vector<int>>&dp,int sum)
+    {
+        if(sum==0)
+        return 1;
+        
+        if(n<=0 && sum!=0)
+        return 0;
+        
+        if(dp[n][sum]!=-1)
+        return dp[n][sum];
+        
+        if(arr[n-1]>sum)
+        dp[n][sum]=fun(n-1,arr,dp,sum);
+        else
+        dp[n][sum]=fun(n-1,arr,dp,sum)+fun(n-1,arr,dp,sum-arr[n-1]);
+        
+        return dp[n][sum];
+    }
+
+
+
+    int equalPartition(int n, int arr[])
+    {
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            sum=sum+arr[i];
+        }
+        
+        if(sum%2!=0)
+        return 0;
+        
+        
+        sum=sum/2;
+        vector<vector<int>>dp(n+1,vector<int>(sum+1));
+        for(int i=0;i<=n;i++)
+        {
+            for(int j=0;j<=sum;j++)
+            {
+                dp[i][j]=-1;
+            }
+        }
+        
+        
+        return fun(n,arr,dp,sum);
+    }
