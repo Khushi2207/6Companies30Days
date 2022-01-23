@@ -1,0 +1,44 @@
+const int MOD=1e9+7;
+    
+    long long int fun(int n,int x,int i,vector<vector<int>>&dp)
+    {
+        if(n==0)
+        return 1;
+        
+        if(i>n)
+        return 0;
+        
+        if(dp[n][i]!=-1)
+        return dp[n][i];
+        
+        long long int p=pow(i,x);
+        
+        if(p<=n)
+        dp[n][i]=(fun(n,x,i+1,dp)+fun(n-p,x,i+1,dp))%MOD;
+        
+        else
+        dp[n][i]=0;
+        
+        return dp[n][i]%MOD;
+    }
+    
+    
+    
+    
+    int numOfWays(int n, int x)
+    {
+        int i=1;
+        
+        vector<vector<int>>dp(n+1,vector<int>(n+1));
+        for(int i=0;i<=n;i++)
+        {
+            for(int j=0;j<=n;j++)
+            dp[i][j]=-1;
+        }
+        
+        
+        
+        
+        return fun(n,x,i,dp)%MOD;
+        
+    }
