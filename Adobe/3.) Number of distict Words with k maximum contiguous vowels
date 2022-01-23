@@ -1,0 +1,38 @@
+const int M=1e9+7;
+    long long solve(int n,int cnt,int k,vector<vector<int>>&dp)
+    {
+        if(n == 0) return 1;
+        
+       if(dp[n][cnt] != -1) return dp[n][cnt]%M; 
+        
+        if(cnt == k) return dp[n][cnt] = ((21%M)*(solve(n-1, 0, k,dp))%M)%M;
+        
+        
+        return dp[n][cnt] = (((21%M)*(solve(n-1, 0, k,dp))%M)%M + (5*(solve(n-1, cnt+1, k,dp))%M)%M)%M;
+    }
+        
+    
+  
+  
+  
+    int kvowelwords(int n, int k) 
+    {
+        if(n==0)
+        return 0;
+        
+        if(k==0)
+        return 21;
+        
+        vector<vector<int>>dp(1001,vector<int>(1001));
+        for(int i=0;i<=n;i++)
+        {
+            for(int j=0;j<=k;j++)
+            {
+                dp[i][j]=-1;
+            }
+        }
+        
+        int c=0;
+        return solve(n,c,k,dp)%M;
+       
+    }
