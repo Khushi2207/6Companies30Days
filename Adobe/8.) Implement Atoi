@@ -1,0 +1,27 @@
+int atoi(string s) 
+    {
+        int ans=0;
+        int j=0,c=0;
+        if(s[0]=='-')
+        {
+            j=1;
+            c++;
+        }
+        
+        for(int i=j;i<s.size();i++)
+        {
+            if(s[i]>='0' && s[i]<='9')
+            {
+                char ch=s[i];
+                ans=ans*10+(ch-'0');
+            }
+            else
+            return -1;
+        }
+        
+        
+        if(c==1)
+        return (-1*ans);
+        
+        return ans;
+    }
