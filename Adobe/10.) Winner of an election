@@ -1,0 +1,31 @@
+vector<string> winner(string arr[],int n)
+    {
+        vector<string>ans;
+        map<string,int>mp;
+        for(int i=0;i<n;i++)
+        {
+            mp[arr[i]]+=1;
+        }
+        int max_vote=0;
+        string s1="",s2="";
+        for(auto it: mp)
+        {
+            if(it.second==max_vote)
+            {
+                int p=it.first.size();
+                int m=arr[0].size();
+                if(lexicographical_compare(it.first.begin(),it.first.end(),arr[0].begin(),arr[0].end())==false)
+                 continue;
+                
+            }
+            if(it.second>max_vote)
+            {
+                max_vote=it.second;
+                s1=it.first;
+                s2=to_string(it.second);
+            }
+        }
+        ans.push_back(s1);
+        ans.push_back(s2);
+        return ans;
+    }
