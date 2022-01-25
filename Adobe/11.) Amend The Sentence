@@ -1,0 +1,34 @@
+string amendSentence (string s)
+    {
+       string word="";
+       string ans="";
+       deque<string>dq;
+       int n=s.size();
+       for(int i=0;i<n;i++)
+       {
+           if(s[i]>='A' && s[i]<='Z')
+           {
+               if(i!=0)
+               dq.push_back(word);
+               word="";
+               s[i]=s[i]+32;
+               word+=s[i];
+           }
+           else
+           {
+               word+=s[i];
+           }
+       }
+       dq.push_back(word);
+       
+       while(!dq.empty())
+       {
+        
+           ans=ans+dq.front();
+           dq.pop_front();
+           if(dq.size()!=0)
+           ans=ans+" ";
+       }
+       
+       return ans;
+    }
