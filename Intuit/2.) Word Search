@@ -1,0 +1,43 @@
+bool dfs(vector<vector<char>>& b,string word,int i,int j,int n)
+    {
+        if(n==word.size())
+        return true;
+        
+        if(i<0 || i>=b.size() || j<0 || j>=b[0].size() || b[i][j]!=word[n])
+        return false;
+        
+        b[i][j]='0';
+        bool check1=dfs(b,word,i-1,j,n+1);
+        bool check2=dfs(b,word,i+1,j,n+1);
+        bool check3=dfs(b,word,i,j+1,n+1);
+        bool check4=dfs(b,word,i,j-1,n+1);
+        
+        b[i][j]=word[n];
+        
+        if(check1==true || check2==true || check3==true || check4==true)
+        return true;
+        else
+        return false;
+    }
+
+
+
+    bool isWordExist(vector<vector<char>>& board, string word) 
+    {
+        int w=word.size();
+        if(w==0)
+        return true;
+        
+        
+       
+        for(int i=0;i<board.size();i++)
+        {
+            for(int j=0;j<board[i].size();j++)
+            {
+                if(board[i][j]==word[0] && dfs(board,word,i,j,0))
+                return true;
+            }
+        }
+        return false;
+    
+    }
