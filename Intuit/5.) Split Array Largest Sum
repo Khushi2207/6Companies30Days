@@ -1,0 +1,32 @@
+long long dp[1005][53];    
+    
+    long long solve(vector<int>& nums, int idx, int m) {
+        // base condition
+        long long ans = INT_MAX;  // Answer of the current state
+        long long sum = 0;  // sum from idx to n - 1
+        if(m == 0) {
+		// When there are 0 splits left, calculate the sum of the remaining potion of the given vector and return it.
+            for(int j = idx; j < nums.size(); j++) {
+                sum += nums[j];
+            }
+            return sum;
+        }
+        
+        if(dp[idx][m] != -1) {
+            return dp[idx][m];
+        }
+        
+        
+        for(int j = idx; j < nums.size(); j++) {
+            sum += nums[j];
+            ans = min(ans, max(sum, solve(nums, j + 1, m - 1)));
+        }
+        
+        return dp[idx][m] = ans;
+    }
+    
+    int splitArray(vector<int>& nums, int m) {
+        memset(dp, -1, sizeof dp);
+        return solve(nums, 0, m - 1);
+        
+    }
