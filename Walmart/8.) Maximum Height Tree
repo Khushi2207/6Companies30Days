@@ -1,0 +1,20 @@
+void fun(int i,int n,int &l)
+    {
+        if(i>n)
+        {
+            return;
+        }
+        l++;
+        fun(i+1,n-i,l);
+        return;
+    }
+
+
+    int height(int N){
+        
+        int l=0;
+        int i=1;
+        
+        fun(i,N,l);
+        return l;
+    }
