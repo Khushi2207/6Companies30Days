@@ -1,0 +1,17 @@
+int fun(Node* root)
+    {
+        if(root==NULL)
+        return 0;
+        
+        int old_val=root->data;
+        root->data=fun(root->left)+fun(root->right);
+        
+        return root->data+old_val;
+    }
+    
+    
+    void toSumTree(Node *root)
+    {
+      
+        fun(root);
+    }
