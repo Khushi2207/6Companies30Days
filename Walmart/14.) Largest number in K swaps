@@ -1,0 +1,45 @@
+string fun(string str,string &s,int k,int pos)
+    {
+        if(k==0)
+        return s;
+        
+        char maxm=str[pos];
+        for(int i=pos+1;i<str.size();i++)
+        {
+            if(maxm<str[i])
+            maxm=str[i];
+        }
+        
+        if(maxm!=str[pos])
+        {
+            k--;
+        }
+        for(int i=str.size()-1;i>=pos;i--)
+        {
+            if(str[i]==maxm)
+            {
+                swap(str[i],str[pos]);
+                if(str.compare(s) > 0)
+                s=str;
+            
+            
+            fun(str,s,k,pos+1);
+            swap(str[i],str[pos]);
+            }
+        }
+        return s;
+    }
+    
+    
+    string findMaximumNum(string str, int k)
+    {
+        int n=str.size();
+        string s=str;
+        
+        if(k==0)
+        return s;
+        
+        return fun(str,s,k,0);
+        
+        
+    }
