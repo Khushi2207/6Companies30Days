@@ -1,0 +1,24 @@
+    int fun(vector<vector<int>>&dp,int l,int r)
+    {
+        
+        if(l>=r)
+            return 0;
+        if(dp[l][r]!=-1)
+            return dp[l][r];
+        int res=INT_MAX,ans=INT_MIN;
+        for(int j=l;j<=r;j++)
+        {
+            int ans=max(fun(dp,l,j-1),fun(dp,j+1,r));
+            res=min(res,ans+j);
+        }
+        return dp[l][r]=res;
+    }
+    
+    
+    int getMoneyAmount(int n) 
+    {
+        vector<vector<int>>dp(n+1,vector<int>(n+1,-1));
+        
+        return fun(dp,1,n);
+        
+    }
