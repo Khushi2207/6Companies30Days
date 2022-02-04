@@ -1,0 +1,25 @@
+int fun(vector<vector<int>>&dp,int a,int b,int x,int y)
+    {
+        if(x==a && y==b)
+        {
+            return 1;
+        }
+        if(x>a || y>b)
+        return 0;
+        
+        if(dp[x][y]!=-1)
+        return dp[x][y];
+        
+        dp[x][y]=fun(dp,a,b,x+1,y)+fun(dp,a,b,x,y+1);
+        
+        return dp[x][y];
+    }
+    
+    
+    
+    int NumberOfPath(int a, int b)
+    {
+        vector<vector<int>>dp(a+1,vector<int>(b+1,-1));
+        return fun(dp,a,b,1,1);
+        
+    }
